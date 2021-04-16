@@ -34,8 +34,16 @@ public class LutadorController {
         }
     }
 
-    @GetMapping("/lutadores-vivos"){
-        con
+    @GetMapping("/Contagem-vivos")
+    public ResponseEntity getContagem(){
+        List<Lutador> lutador = repository.findAll();
+        Integer vivos = 0;
+        for (int i = 0; i< lutador.size(); i++){
+            if(lutador.get(i).isVivo()) {
+                vivos++;
+            }
+        }
+        return ResponseEntity.status(201).body("Tem"+vivos+" lutadores vivos");
     }
 
 
